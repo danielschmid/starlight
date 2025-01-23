@@ -3,8 +3,13 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import tailwind from "@astrojs/tailwind";
 
+const NETLIFY_PREVIEW_SITE =
+  process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL;
+const site = NETLIFY_PREVIEW_SITE || "https://edhea.netlify.app/";
+
 // https://astro.build/config
 export default defineConfig({
+  site,
   trailingSlash: "always",
   integrations: [
     starlight({
